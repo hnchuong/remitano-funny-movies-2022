@@ -1,23 +1,19 @@
 production:
   clients:
     default:
-      database: <%= ENV['DB_NAME'] %>
-      hosts:
-        - <%= ENV['DB_HOST'] %>
-      options:
-        user: <%= ENV['DB_USER'] %>
-        password: <%= ENV['DB_PASS'] %>
-        auth_source: admin
-        ssl: false
+      uri: <%= ENV['MONGODB_URI'] %>
 
 development:
   # Configure available database clients. (required)
   clients:
     # Defines the default client. (required)
     default:
-      database: <%= ENV['DB_NAME'] %>
+      database:
+        <%= ENV['DB_NAME'] || 'funny_movies_development' %>
       hosts:
-        - <%= ENV['DB_HOST'] %>
+        - localhost
+        # - localhost:27017
+        # - <%= ENV['DB_HOST'] %>
       options:
 
   # Configure Mongoid specific options. (optional)
@@ -26,7 +22,7 @@ development:
 test:
   clients:
     default:
-      database: huanlv_test
+      database: funny_movies_test
       hosts:
         - localhost:27017
       options:

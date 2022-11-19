@@ -1,4 +1,4 @@
-FROM ruby:2.7.2
+FROM ruby:2.7.6
 
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   apt-transport-https
@@ -24,7 +24,8 @@ ENV BUNDLE_PATH /gems
 RUN bundle install
 
 COPY package.json yarn.lock ./
-RUN yarn install --check-files
+# RUN yarn install --check-files
+RUN yarn install
 
 COPY . /app/
 
